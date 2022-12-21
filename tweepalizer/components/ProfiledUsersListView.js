@@ -1,38 +1,34 @@
-import { GetUsers } from '../clients/users'
+import useUser from '../hooks/useUser';
 import React, { useEffect, useState } from 'react';
 
-export default function ProfiledUsersListView({ initialUserData }) {
-    console.log('ProfiledUsersListView executed')
-    const [usersInState, setUsersInState] = useState(initialUserData)
+export default function ProfiledUsersListView() {
+    const [userName, setUserName] = useState("")
+    const users = useUser(userName)
 
     return (
         <>
             <div>
-                <form onSubmit={async (event) => {
+                <form onSubmit={(event) => {
                     event.preventDefault()
-                    const userName = event.target.username.value
-                    const result = await GetUsers(userName)
-                    setUsersInState(result.users)
+                    setUserName(event.target.username.value)
                 }} method='post'>
                     <label htmlFor='username'> search for user </label>
-                    <input type='text' id='username' name='username' required />
+                    <input type='text' id='username' name='username' />
                     <button type='submit'> submit </button>
                 </form>
             </div>
             <div>
-                <UserList users={usersInState} />
+                <UserList userList={users} />
             </div>
         </>
     )
 }
 
 
-
-function UserList({ users }) {
-    console.log('UserList executed')
+function UserList({ userList }) {
     return <>
         {
-            users.map((user) => (
+            userList.map((user) => (
                 <div key={user.name} > {user.name} </div>
             ))
         }

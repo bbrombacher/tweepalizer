@@ -9,16 +9,39 @@ export default async function handler(req, res) {
         // get desired user name to be retrieved from database
         const un = req.body.username
 
-        // mock response
-        const resp = {
-            users: [
-                {
-                    name: un
-                }
-            ]
+        // mock data
+        const users = [
+            {
+                name: 'fred'
+            },
+            {
+                name: 'brandon'
+            },
+            {
+                name: 'al'
+            },
+            {
+                name: 'katie'
+            },
+            {
+                name: 'joyce'
+            }
+        ]
+
+        let finalUsers = []
+        if (un === "") {
+            finalUsers = users
+        } else {
+            const foundUser = users.find((user) => user.name == un)
+            if (!foundUser) {
+                finalUsers = []
+            } else {
+                finalUsers = [foundUser]
+            }
         }
 
-        res.status(200).json(resp)
+
+        res.status(200).json({ users: finalUsers })
         return
     }
 }

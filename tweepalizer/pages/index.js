@@ -5,26 +5,6 @@ import styles from '../styles/Home.module.css'
 import ProfiledUsersListView from '../components/ProfiledUsersListView'
 import ProfileNewUserButton from '../components/ProfileNewUserButton'
 
-
-
-export function getServerSideProps() {
-
-  const usersData = [
-    {
-      "name": "fred"
-    },
-    {
-      "name": "jorge"
-    }
-  ]
-
-  return {
-    props: {
-      usersData
-    }
-  }
-}
-
 export default function Home(props) {
   return (
     <div>
@@ -35,7 +15,7 @@ export default function Home(props) {
         <ProfileNewUserButton />
       </div>
       <div>
-        <ProfiledUsersListView initialUserData={props.usersData} />
+        <ProfiledUsersListView />
       </div>
     </div>
   )
