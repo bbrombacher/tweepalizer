@@ -1,8 +1,9 @@
+import Link from 'next/link';
 
 export default function ProfileNewUserButton() {
     return (
         <>
-            <button> Profile New User </button>
+            <Link href='users/profile-new-user'> Profile New User </Link>
         </>
     )
 }

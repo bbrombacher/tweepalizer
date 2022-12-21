@@ -1,5 +1,6 @@
 import useUser from '../hooks/useUser';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function ProfiledUsersListView() {
     const [userName, setUserName] = useState("")
@@ -29,7 +30,14 @@ function UserList({ userList }) {
     return <>
         {
             userList.map((user) => (
-                <div key={user.name} > {user.name} </div>
+                <div>
+                    <Link key={user.name} href={{
+                        pathname: '/users/[slug]',
+                        query: {
+                            slug: user.name
+                        }
+                    }}> {user.name} </Link>
+                </div>
             ))
         }
     </>
