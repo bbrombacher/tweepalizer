@@ -2,20 +2,40 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+import ProfiledUsersListView from '../components/ProfiledUsersListView'
+import ProfileNewUserButton from '../components/ProfileNewUserButton'
+
+
+
+export function getServerSideProps() {
+
+  const usersData = [
+    {
+      "name": "fred"
+    },
+    {
+      "name": "jorge"
+    }
+  ]
+
+  return {
+    props: {
+      usersData
+    }
+  }
+}
+
+export default function Home(props) {
   return (
     <div>
       <div>
-        <h1> Twit Profiler (header div)</h1>
+        <h1> Twit Profiler </h1>
       </div>
       <div>
-        search field and button div
+        <ProfileNewUserButton />
       </div>
       <div>
-        profile new user button
-      </div>
-      <div>
-        profiled users list view
+        <ProfiledUsersListView initialUserData={props.usersData} />
       </div>
     </div>
   )
