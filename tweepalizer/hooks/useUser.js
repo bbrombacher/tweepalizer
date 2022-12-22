@@ -9,7 +9,7 @@ export default function useUser(userName) {
             username: userName
         }
         const JSONData = JSON.stringify(data)
-        const endpoint = 'api/users'
+        const endpoint = 'api/users/bulk'
         const options = {
             method: 'POST',
             headers: {

@@ -6,13 +6,15 @@ export default function ProfiledUsersListView() {
     const [userName, setUserName] = useState("")
     const users = useUser(userName)
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        setUserName(e.target.username.value)
+    }
+
     return (
         <>
             <div>
-                <form onSubmit={(event) => {
-                    event.preventDefault()
-                    setUserName(event.target.username.value)
-                }} method='post'>
+                <form onSubmit={handleSubmit} method='post'>
                     <label htmlFor='username'> search for user </label>
                     <input type='text' id='username' name='username' />
                     <button type='submit'> submit </button>
